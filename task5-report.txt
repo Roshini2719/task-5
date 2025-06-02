@@ -1,17 +1,61 @@
 Task 5: Network Traffic Capture Report - Kali Linux
 
-1. Interface used: etho0
-2. Duration: 1 minute
-3. Actions performed: 
-   - Pinged tryhackme.com(generated ICMP)
-  
+Summary of the Traffic
+Your IP (source): 10.0.2.4
 
-4. Protocols Identified:
-   - DNS: Used to resolve domain names.
-   - ICMP: Ping traffic to google.com.
-   - TCP: Underlying transport for HTTP.
+DNS Server IP: 192.168.197.204
 
-5. Packet Details:
-   - DNS Query: tryhackme.com
-   
+Target Domain: tryhackme.com
+
+Target IPs resolved:
+
+104.22.55.228
+
+172.67.27.10
+
+104.22.54.228
+
+🧾 Detailed Analysis
+1. DNS Queries
+Packet #2 and #3: 10.0.2.4 asks 192.168.197.204 for A and AAAA records of tryhackme.com.
+
+Packet #4 and #5: The DNS server replies with:
+
+IPv4 addresses: 104.22.55.228, 172.67.27.10, 104.22.54.228
+
+IPv6 address: 2606:4700:9766:d299:d3fe:fd:ae35:d89c
+
+2. ICMP Echo Requests/Replies (Ping)
+Starting from packet #6, you continuously ping one of the resolved IPs: 104.22.55.228.
+
+Each request gets a reply, showing that:
+
+The host is reachable.
+
+The latency is minimal .
+
+TTL values in replies are 56, indicating it's possibly behind a few hops.
+
+3. Reverse DNS Lookup
+Packet #8: Your system tries to resolve the PTR record for 104.22.55.228 (reverse DNS).
+
+Packet #9: The DNS server replies with "No such name" — meaning reverse DNS is not configured for this IP.
+
+4. ARP Exchange
+Packets #18 and #19: ARP query/response to resolve the MAC address of 10.0.2.1 — usually the default gateway.
+
+Shows typical local network behavior.
+
+What Does This Confirm?
+Your system (10.0.2.4) is properly:
+
+Connected to the internet.
+
+Resolving DNS correctly.
+
+Communicating with external IPs.
+
+No anomalies or suspicious behavior is evident.
+
+The host 104.22.55.228 is part of Cloudflare (common for many websites like TryHackMe).
 
