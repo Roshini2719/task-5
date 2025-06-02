@@ -1,0 +1,17 @@
+Task 5: Network Traffic Capture Report - Kali Linux
+
+1. Interface used: etho0
+2. Duration: 1 minute
+3. Actions performed: 
+   - Pinged tryhackme.com(generated ICMP)
+  
+
+4. Protocols Identified:
+   - DNS: Used to resolve domain names.
+   - ICMP: Ping traffic to google.com.
+   - TCP: Underlying transport for HTTP.
+
+5. Packet Details:
+   - DNS Query: tryhackme.com
+   
+
